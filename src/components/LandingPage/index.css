@@ -418,14 +418,15 @@ body {
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   position: relative;
   height: 100%;
-  opacity: 0;
-  transform: translateY(50px) scale(0.95);
+  opacity: 1; /* Remove fade-in */
+  transform: none; /* Remove translate/scale */
   border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .landing-page-services-section.in-view .landing-page-service-card {
+  /* Remove animation: make sure no transition for appearance */
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: none;
 }
 
 .landing-page-services-section.in-view .landing-page-service-card-1 {
@@ -1915,7 +1916,7 @@ body {
 /* Form Styles */
 .landing-page-contact-form-container {
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px; /* Increased from 800px */
   margin: 0 auto 60px;
   position: relative;
   z-index: 2;
@@ -3005,53 +3006,100 @@ body {
   background-color: white;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05); /* match service card shadow */
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   position: relative;
   height: 100%;
-  opacity: 0;
-  transform: translateY(50px) scale(0.95);
+  opacity: 1;
+  transform: none;
   border: 1px solid rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
 }
-
-.landing-page-client-services-section.in-view
-  .landing-page-client-service-card {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* Staggered animation delays */
-.landing-page-client-services-section.in-view
-  .landing-page-client-service-card-1 {
-  transition-delay: 0.1s;
-}
-.landing-page-client-services-section.in-view
-  .landing-page-client-service-card-2 {
-  transition-delay: 0.2s;
-}
-.landing-page-client-services-section.in-view
-  .landing-page-client-service-card-3 {
-  transition-delay: 0.3s;
-}
-.landing-page-client-services-section.in-view
-  .landing-page-client-service-card-4 {
-  transition-delay: 0.4s;
-}
-.landing-page-client-services-section.in-view
-  .landing-page-client-service-card-5 {
-  transition-delay: 0.5s;
-}
-.landing-page-client-services-section.in-view
-  .landing-page-client-service-card-6 {
-  transition-delay: 0.6s;
-}
-
 .landing-page-client-service-card:hover {
   transform: translateY(-15px) scale(1.02);
   box-shadow: 0 25px 45px rgba(92, 77, 244, 0.15);
   z-index: 5;
+}
+.landing-page-client-service-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 0;
+  background: linear-gradient(to bottom, #5c4df4, #7a70f9);
+  transition: height 0.5s ease;
+  z-index: 0;
+}
+.landing-page-client-service-card:hover::before {
+  height: 100%;
+}
+.landing-page-client-service-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(92, 77, 244, 0.03),
+    rgba(122, 112, 249, 0.05)
+  );
+  transition: height 0.5s ease;
+  z-index: 0;
+}
+.landing-page-client-service-card:hover::after {
+  height: 100%;
+}
+.landing-page-client-service-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  background-color: rgba(92, 77, 244, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5c4df4;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin: 25px 25px 0px 25px;
+  position: relative;
+  z-index: 1;
+}
+.landing-page-client-service-card:hover .landing-page-client-service-icon-wrapper {
+  background: linear-gradient(135deg, #5c4df4, #7a70f9);
+  color: white;
+  transform: scale(1.1) rotate(10deg);
+}
+.landing-page-client-service-icon-wrapper svg {
+  transition: all 0.3s ease;
+}
+.landing-page-client-service-card:hover .landing-page-client-service-icon-wrapper svg {
+  transform: scale(1.2);
+}
+.landing-page-client-service-content {
+  padding: 35px;
+  position: relative;
+  z-index: 1;
+}
+.landing-page-client-service-card h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+  font-family: "Montserrat", sans-serif;
+  transition: all 0.3s ease;
+}
+.landing-page-client-service-card:hover h3 {
+  color: #5c4df4;
+  transform: translateX(5px);
+}
+.landing-page-client-service-card p {
+  color: #666;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 0;
 }
 
 /* Client Service Image */
@@ -3090,50 +3138,6 @@ body {
 
 .landing-page-client-service-card:hover .landing-page-client-service-overlay {
   opacity: 1;
-}
-
-/* Client Service Content */
-.landing-page-client-service-content {
-  padding: 30px;
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-}
-
-.landing-page-client-service-content h3 {
-  margin-top: 0;
-}
-
-.landing-page-client-service-content p {
-  flex: 0 0 auto;
-}
-
-.landing-page-client-service-link {
-  margin-top: auto;
-  align-self: flex-start;
-}
-
-.landing-page-client-service-card h3 {
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 15px;
-  color: #333;
-  font-family: "Montserrat", sans-serif;
-  transition: all 0.3s ease;
-}
-
-.landing-page-client-service-card:hover h3 {
-  color: #5c4df4;
-  transform: translateX(5px);
-}
-
-.landing-page-client-service-card p {
-  color: #666;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  margin-bottom: 20px;
 }
 
 /* Client Service Link */
@@ -3344,5 +3348,34 @@ body {
   .landing-page-vision-cards-grid {
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .landing-page-carousel-slides-container,
+  .landing-page-carousel-indicators,
+  .landing-page-client-banner,
+  .landing-page-single-banner {
+    display: none !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .landing-page-hero.client-hero {
+    margin-top: 24px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-page-services-section {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-page-contact-form-container {
+    max-width: 100% !important;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
