@@ -70,6 +70,240 @@ const welcomeCardStyles = `
   }
 })();
 
+// Add styles for OTP popup overlay and form
+const otpPopupStyles = `
+.otp-popup-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.25);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: overlayFadeIn 0.4s;
+}
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.otp-popup {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  padding: 2rem 2.5rem 1.5rem 2.5rem;
+  text-align: center;
+  min-width: 320px;
+  animation: otpPopupScaleFadeIn 0.6s cubic-bezier(.68,-0.55,.27,1.55);
+}
+@keyframes otpPopupScaleFadeIn {
+  0% { opacity: 0; transform: scale(0.7); }
+  60% { opacity: 1; transform: scale(1.08); }
+  80% { transform: scale(0.97); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.otp-sent-emoji {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  animation: emojiBounce 1.2s infinite alternate;
+}
+.otp-form {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.otp-input {
+  padding: 0.7rem 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid #2563eb;
+  font-size: 1.1rem;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+}
+.otp-input:focus {
+  border-color: #1741a6;
+  box-shadow: 0 0 0 2px #2563eb33;
+}
+.otp-submit-btn {
+  background: linear-gradient(90deg, #2563eb 60%, #1741a6 100%);
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.7rem 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+}
+.otp-submit-btn:hover {
+  background: linear-gradient(90deg, #1741a6 60%, #2563eb 100%);
+  transform: scale(1.05);
+}
+.otp-error {
+  color: #e11d48;
+  font-size: 1rem;
+  margin-top: 0.2rem;
+  animation: shake 0.4s;
+}
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+@keyframes emojiBounce {
+  0% { transform: translateY(0) scale(1); }
+  60% { transform: translateY(-8px) scale(1.15); }
+  100% { transform: translateY(0) scale(1); }
+}
+`;
+(function injectOtpPopupOverlayStyles() {
+  if (!document.getElementById("otp-popup-overlay-styles")) {
+    const styleElement = document.createElement("style");
+    styleElement.id = "otp-popup-overlay-styles";
+    styleElement.innerHTML = otpPopupStyles;
+    document.head.appendChild(styleElement);
+  }
+})();
+
+// Add styles for OTP verified sign
+const otpVerifiedStyles = `
+.otp-verified-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.18);
+  z-index: 4000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: overlayFadeIn 0.3s;
+}
+.otp-verified-popup {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(34,197,94,0.18);
+  padding: 2rem 2.5rem 1.5rem 2.5rem;
+  text-align: center;
+  min-width: 320px;
+  animation: otpVerifiedScaleFadeIn 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+}
+@keyframes otpVerifiedScaleFadeIn {
+  0% { opacity: 0; transform: scale(0.7); }
+  60% { opacity: 1; transform: scale(1.08); }
+  80% { transform: scale(0.97); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.otp-verified-checkmark {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: checkmarkPop 0.7s;
+}
+@keyframes checkmarkPop {
+  0% { transform: scale(0.7); opacity: 0; }
+  60% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.otp-verified-message {
+  color: #22c55e;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  animation: textPop 0.7s;
+}
+`;
+(function injectOtpVerifiedStyles() {
+  if (!document.getElementById("otp-verified-styles")) {
+    const styleElement = document.createElement("style");
+    styleElement.id = "otp-verified-styles";
+    styleElement.innerHTML = otpVerifiedStyles;
+    document.head.appendChild(styleElement);
+  }
+})();
+
+// Add styles for OTP sent popup
+const otpSentPopupStyles = `
+.otp-sent-popup {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: #2563eb;
+  color: #fff;
+  padding: 1.5rem 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  z-index: 2000;
+  text-align: center;
+  font-size: 1.2rem;
+  animation: otpBounceFadeInOut 2s forwards;
+  opacity: 0;
+}
+.otp-sent-emoji {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  animation: emojiBounce 1.2s infinite alternate;
+}
+.otp-sent-message {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  animation: textPop 0.7s;
+}
+@keyframes otpBounceFadeInOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -60%) scale(0.7);
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+  20% {
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  30% {
+    transform: translate(-50%, -50%) scale(1.03);
+  }
+  40% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  85% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -40%) scale(0.7);
+  }
+}
+@keyframes emojiBounce {
+  0% { transform: translateY(0) scale(1); }
+  60% { transform: translateY(-8px) scale(1.15); }
+  100% { transform: translateY(0) scale(1); }
+}
+@keyframes textPop {
+  0% { opacity: 0; transform: scale(0.7); }
+  60% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+`;
+(function injectOtpPopupStyles() {
+  if (!document.getElementById("otp-sent-popup-styles")) {
+    const styleElement = document.createElement("style");
+    styleElement.id = "otp-sent-popup-styles";
+    styleElement.innerHTML = otpSentPopupStyles;
+    document.head.appendChild(styleElement);
+  }
+})();
+
 class SignupPage extends Component {
   state = {
     name: "",
@@ -85,8 +319,14 @@ class SignupPage extends Component {
     isSubmitting: false,
     redirectToLogin: false,
     showWelcomeCard: false,
+    showOtpSentPopup: false, // RESTORED
+    showOtpPopup: false,
+    otpInput: "",
+    otpError: "",
+    demoOtp: "",
     location: "",
     isGettingLocation: false,
+    showOtpVerifiedSign: false,
   };
 
   // Backend URLs
@@ -209,110 +449,158 @@ class SignupPage extends Component {
     return Object.keys(errors).length === 0;
   };
 
-  handleSubmit = async (e) => {
+  handleRegisterClick = (e) => {
     e.preventDefault();
-
+    // Validate form first
     if (this.validateForm()) {
-      this.setState({ isSubmitting: true });
-
-      try {
-        // Get the current backend URL
-        const baseUrl = this.getBackendUrl();
-        console.log("Using backend URL for signup:", baseUrl);
-
-        // ONLY use the actual API for signup - no test mode fallback
-        console.log("Attempting to sign up with API...");
-
-        const response = await axios.post(
-          `${baseUrl}/api/signup`,
-          {
-            name: this.state.name,
-            email: this.state.email,
-            password: this.state.password,
-            role: this.state.role,
-            profession: this.state.profession,
-            phone: this.state.phone, // Add this line
-            location: this.state.location, // Add location
-          },
-          {
-            withCredentials: true,
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            timeout: 10000,
-          }
-        );
-
-        console.log("API signup response:", response.data);
-
-        if (response.data && response.data.success && response.data.user) {
-          // Success! Use the API response data
-          const userData = response.data.user;
-          console.log("Successfully signed up with API, user data:", userData);
-
-          // Clear localStorage first to ensure we trigger storage event
-          localStorage.removeItem("user");
-
-          // Small delay to ensure removal is processed
-          await new Promise((resolve) => setTimeout(resolve, 100));
-
-          // Store user data in localStorage
-          console.log("Storing user data in localStorage:", userData);
-          localStorage.setItem("user", JSON.stringify(userData));
-
-          // Show welcome message if available
-          if (window.showWelcomeMessage) {
-            window.showWelcomeMessage();
-          } else if (
-            window.navbarComponent &&
-            typeof window.navbarComponent.showWelcomeMessage === "function"
-          ) {
-            window.navbarComponent.showWelcomeMessage();
-          } else {
-            // If no welcome message function is available, trigger login notification as fallback
-            if (
-              window.navbarComponent &&
-              typeof window.navbarComponent.handleLogin === "function"
-            ) {
-              window.navbarComponent.handleLogin(userData);
-            }
-          }
-
-          // Show welcome card
-          this.setState({ showWelcomeCard: true });
-
-          // Hide welcome card and redirect after 5 seconds
-          setTimeout(() => {
-            this.setState({
-              showWelcomeCard: false,
-              redirectToLogin: true,
-            });
-          }, 5000);
-        } else {
-          // API response was not as expected
-          throw new Error("Invalid response from API");
-        }
-      } catch (error) {
-        console.error("Registration error:", error);
-
-        // Handle error states
-        this.setState({
-          errors: {
-            ...this.state.errors,
-            general: "Registration failed. Please try again.",
-          },
-          isSubmitting: false,
-        });
-      } finally {
-        // Reset submitting state in case redirect doesn't happen
-        setTimeout(() => {
-          if (this.state.isSubmitting) {
-            this.setState({ isSubmitting: false });
-          }
-        }, 3000);
-      }
+      // Generate demo OTP (hardcoded or random)
+      const demoOtp = "123456";
+      this.setState({
+        showOtpSentPopup: true,
+        showOtpPopup: false,
+        demoOtp,
+        otpInput: "",
+        otpError: "",
+      });
+      setTimeout(() => {
+        this.setState({ showOtpSentPopup: false, showOtpPopup: true });
+      }, 2000); // Show OTP input after 2 seconds
     }
+  };
+
+  handleOtpInputChange = (e) => {
+    this.setState({ otpInput: e.target.value, otpError: "" });
+  };
+
+  handleOtpSubmit = (e) => {
+    e.preventDefault();
+    const { otpInput, demoOtp } = this.state;
+    if (otpInput === demoOtp) {
+      // OTP correct, show verified sign, then proceed
+      this.setState({ showOtpPopup: false, showOtpVerifiedSign: true }, () => {
+        setTimeout(() => {
+          this.setState({ showOtpVerifiedSign: false }, () => {
+            this.handleSubmitInternal();
+          });
+        }, 1700); // Show verified sign for 1.7s
+      });
+    } else {
+      this.setState({ otpError: "Invalid OTP. Please try again." });
+    }
+  };
+
+  // Extracted original handleSubmit logic here
+  handleSubmitInternal = async () => {
+    this.setState({ showOtpPopup: false });
+    this.setState({ isSubmitting: true });
+    try {
+      const baseUrl = this.getBackendUrl();
+      console.log("Using backend URL for signup:", baseUrl);
+
+      // ONLY use the actual API for signup - no test mode fallback
+      console.log("Attempting to sign up with API...");
+
+      const response = await axios.post(
+        `${baseUrl}/api/signup`,
+        {
+          name: this.state.name,
+          email: this.state.email,
+          password: this.state.password,
+          role: this.state.role,
+          profession: this.state.profession,
+          phone: this.state.phone, // Add this line
+          location: this.state.location, // Add location
+        },
+        {
+          withCredentials: true,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          timeout: 10000,
+        }
+      );
+
+      console.log("API signup response:", response.data);
+
+      if (response.data && response.data.success && response.data.user) {
+        // Success! Use the API response data
+        const userData = response.data.user;
+        console.log("Successfully signed up with API, user data:", userData);
+
+        // Clear localStorage first to ensure we trigger storage event
+        localStorage.removeItem("user");
+
+        // Simulate API delay (reduced)
+        await new Promise((resolve) => setTimeout(resolve, 10));
+        // Simulate user data
+        const userDataSimulated = {
+          name: this.state.name,
+          email: this.state.email,
+          role: this.state.role,
+          profession: this.state.profession,
+          phone: this.state.phone,
+          location: this.state.location,
+        };
+        localStorage.removeItem("user");
+        // No delay for localStorage
+        localStorage.setItem("user", JSON.stringify(userDataSimulated));
+
+        // Show welcome message if available
+        if (window.showWelcomeMessage) {
+          window.showWelcomeMessage();
+        } else if (
+          window.navbarComponent &&
+          typeof window.navbarComponent.showWelcomeMessage === "function"
+        ) {
+          window.navbarComponent.showWelcomeMessage();
+        } else {
+          // If no welcome message function is available, trigger login notification as fallback
+          if (
+            window.navbarComponent &&
+            typeof window.navbarComponent.handleLogin === "function"
+          ) {
+            window.navbarComponent.handleLogin(userData);
+          }
+        }
+
+        // Show welcome card
+        this.setState({ showWelcomeCard: true });
+
+        // Hide welcome card and redirect after 5 seconds
+        setTimeout(() => {
+          this.setState({
+            showWelcomeCard: false,
+            redirectToLogin: true,
+          });
+        }, 2500);
+      } else {
+        // API response was not as expected
+        throw new Error("Invalid response from API");
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+
+      // Handle error states
+      this.setState({
+        errors: {
+          ...this.state.errors,
+          general: "Registration failed. Please try again.",
+        },
+        isSubmitting: false,
+      });
+    } finally {
+      setTimeout(() => {
+        if (this.state.isSubmitting) {
+          this.setState({ isSubmitting: false });
+        }
+      }, 2000);
+    }
+  };
+
+  // Override form submit to use OTP flow
+  handleSubmit = (e) => {
+    this.handleRegisterClick(e);
   };
 
   handleLocationFocus = () => {
@@ -361,7 +649,12 @@ class SignupPage extends Component {
       isSubmitting,
       redirectToLogin,
       showWelcomeCard,
+      showOtpSentPopup,
+      showOtpPopup,
+      otpInput,
+      otpError,
       name,
+      showOtpVerifiedSign,
     } = this.state;
 
     // Redirect to login page if registration was successful
@@ -456,43 +749,6 @@ class SignupPage extends Component {
                 </div>
 
                 {/* Profession Input */}
-                <div className="register-input-group">
-                  <label htmlFor="profession" className="register-label">
-                    Profession
-                  </label>
-                  <input
-                    name="profession"
-                    type="text"
-                    value={this.state.profession}
-                    onChange={this.handleInputChange}
-                    className="register-input"
-                    placeholder="Enter your profession"
-                  />
-                  {errors.profession && (
-                    <p className="register-input-error">{errors.profession}</p>
-                  )}
-                </div>
-              </div>
-
-              {/* Location and Phone Number Inputs in the same row */}
-              <div className="register-row">
-              <div className="register-input-group register-input-group-half">
-                  <label htmlFor="phone" className="register-label">
-                    Phone Number
-                  </label>
-                  <input
-                    name="phone"
-                    type="tel"
-                    value={this.state.phone}
-                    onChange={this.handleInputChange}
-                    className="register-input register-input-half"
-                    placeholder="Enter your phone number"
-                  />
-                  {errors.phone && (
-                    <p className="register-input-error">{errors.phone}</p>
-                  )}
-                </div>
-                {/* Location Input */}
                 <div className="register-input-group register-input-group-half">
                   <label htmlFor="location" className="register-label">
                     Location
@@ -523,7 +779,44 @@ class SignupPage extends Component {
                     <p className="register-input-error">{errors.location}</p>
                   )}
                 </div>
+              </div>
 
+              {/* Location and Phone Number Inputs in the same row */}
+              <div className="register-row">
+              <div className="register-input-group register-input-group-half">
+                  <label htmlFor="phone" className="register-label">
+                    Phone Number
+                  </label>
+                  <input
+                    name="phone"
+                    type="tel"
+                    value={this.state.phone}
+                    onChange={this.handleInputChange}
+                    className="register-input register-input-half"
+                    placeholder="Enter your phone number"
+                  />
+                  {errors.phone && (
+                    <p className="register-input-error">{errors.phone}</p>
+                  )}
+                </div>
+                {/* Location Input */}
+               
+                <div className="register-input-group">
+                  <label htmlFor="profession" className="register-label">
+                    Profession
+                  </label>
+                  <input
+                    name="profession"
+                    type="text"
+                    value={this.state.profession}
+                    onChange={this.handleInputChange}
+                    className="register-input"
+                    placeholder="Enter your profession"
+                  />
+                  {errors.profession && (
+                    <p className="register-input-error">{errors.profession}</p>
+                  )}
+                </div>
 
               </div>
 
@@ -632,6 +925,50 @@ class SignupPage extends Component {
             <p className="welcome-card-message">
               Welcome to VOAT Network, {name}!
             </p>
+          </div>
+        )}
+        {/* OTP Verification Popup */}
+        {showOtpPopup && (
+          <div className="otp-popup-overlay">
+            <div className="otp-popup">
+              <div className="otp-sent-emoji">📧</div>
+              <form onSubmit={this.handleOtpSubmit} className="otp-form">
+                <input
+                  type="text"
+                  className="otp-input"
+                  placeholder="Enter OTP"
+                  value={otpInput}
+                  onChange={this.handleOtpInputChange}
+                  maxLength={6}
+                  autoFocus
+                />
+                <button type="submit" className="otp-submit-btn">Verify OTP</button>
+                {otpError && <div className="otp-error">{otpError}</div>}
+              </form>
+            </div>
+          </div>
+        )}
+        {/* OTP Verified Sign */}
+        {showOtpVerifiedSign && (
+          <div className="otp-verified-overlay">
+            <div className="otp-verified-popup">
+              <div className="otp-verified-checkmark">
+                <svg width="60" height="60" viewBox="0 0 60 60">
+                  <circle cx="30" cy="30" r="28" fill="#fff" stroke="#22c55e" strokeWidth="4"/>
+                  <polyline points="18,32 28,42 44,22" fill="none" stroke="#22c55e" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                    <animate attributeName="points" dur="0.5s" values="18,32 18,32 18,32; 18,32 28,42 28,42; 18,32 28,42 44,22" keyTimes="0;0.5;1" fill="freeze" />
+                  </polyline>
+                </svg>
+              </div>
+              <div className="otp-verified-message">OTP Verified!</div>
+            </div>
+          </div>
+        )}
+        {/* OTP Sent Popup - only show if not showing OTP input or verified sign */}
+        {showOtpSentPopup && !showOtpPopup && !showOtpVerifiedSign && (
+          <div className="otp-sent-popup">
+            <div className="otp-sent-emoji">📧</div>
+            <div className="otp-sent-message">Your OTP is sent to your email</div>
           </div>
         )}
       </div>

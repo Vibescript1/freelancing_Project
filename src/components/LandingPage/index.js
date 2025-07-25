@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavBar from "../Navbar";
 import Footer from "../Footer";
 import ErrorBoundary from "../ErrorBoundary";
@@ -35,6 +35,47 @@ import {
   BookOpen,
 } from "lucide-react";
 import { FaWhatsapp, FaXTwitter } from "react-icons/fa6";
+import ContestAlert from "./ContestAlert";
+import { useEffect, useState } from "react";
+import Submenu from "./Submenu";
+
+function FloatingRegisterButton() {
+  const navigate = useNavigate();
+  const [showPop, setShowPop] = useState(true);
+
+  useEffect(() => {
+    let timer1, timer2;
+    function loopPop() {
+      setShowPop(true);
+      timer1 = setTimeout(() => {
+        setShowPop(false);
+        timer2 = setTimeout(loopPop, 7500);
+      }, 2500);
+    }
+    loopPop();
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, []);
+
+  return (
+    <div className="floating-register-container">
+      {showPop && (
+        <div className="floating-register-pop">
+           🏆 Win ₹10,000 !
+        </div>
+      )}
+      <button
+        className="floating-register-btn"
+        onClick={() => navigate("/contest-registration")}
+        aria-label="Register for Contest"
+      >
+        <span role="img" aria-label="Trophy">🏆</span> Register Now
+      </button>
+    </div>
+  );
+}
 
 class LandingPage extends Component {
   state = {
@@ -87,6 +128,7 @@ class LandingPage extends Component {
     formMessage: "",
     // Timer for success message
     successTimer: null,
+    showContestAlert: true,
   };
 
   //scroll animations
@@ -517,6 +559,14 @@ class LandingPage extends Component {
     }
   };
 
+  handleCloseContestAlert = () => {
+    this.setState({ showContestAlert: false });
+  };
+
+  handleRegisterContest = () => {
+    window.location.href = "/signup";
+  };
+
   render() {
     const servicesData = [
       {
@@ -699,43 +749,37 @@ class LandingPage extends Component {
     // Client services cards data
     const clientServices = [
       {
-        image:
-          "https://res.cloudinary.com/dffu1ungl/image/upload/v1751212086/BRAND_DEVELOPMENT_o7p66b.png",
+        icon: <Palette size={28} />, // Brand Development
         title: "Brand Development",
         description:
           "Comprehensive branding solutions to establish your unique identity in the market.",
       },
       {
-        image:
-          "https://res.cloudinary.com/dffu1ungl/image/upload/v1751212086/6_bkq3hw.png",
+        icon: <Megaphone size={28} />, // Digital Marketing
         title: "Digital Marketing",
         description:
           "Strategic digital marketing campaigns to boost your online presence and reach.",
       },
       {
-        image:
-          "https://res.cloudinary.com/dffu1ungl/image/upload/v1751212086/Web_Development_q5l6li.png",
+        icon: <Code size={28} />, // Web Development
         title: "Web Development",
         description:
           "Custom websites and applications built with cutting-edge technology.",
       },
       {
-        image:
-          "https://res.cloudinary.com/dffu1ungl/image/upload/v1750950262/DM_k7w2p1.jpg",
+        icon: <Globe size={28} />, // SEO Optimization
         title: "SEO Optimization",
         description:
           "Improve your search rankings and drive organic traffic to your business.",
       },
       {
-        image:
-          "https://res.cloudinary.com/dffu1ungl/image/upload/v1750950262/Brand_Development_h25ds0.jpg",
+        icon: <Users size={28} />, // Social Media Management
         title: "Social Media Management",
         description:
           "Professional social media strategies to engage your audience effectively.",
       },
       {
-        image:
-          "https://res.cloudinary.com/dffu1ungl/image/upload/v1750950262/DM_k7w2p1.jpg",
+        icon: <Camera size={28} />, // Content Creation
         title: "Content Creation",
         description:
           "High-quality content that resonates with your target audience and drives engagement.",
@@ -778,6 +822,13 @@ class LandingPage extends Component {
         <ErrorBoundary>
           <NavBar />
         </ErrorBoundary>
+        {/* Show the contest alert modal */}
+        {this.state.showContestAlert && (
+          <ContestAlert
+            onClose={this.handleCloseContestAlert}
+            onRegister={this.handleRegisterContest}
+          />
+        )}
         <div className="landing-page">
           <section
             className={`landing-page-hero ${
@@ -932,6 +983,7 @@ class LandingPage extends Component {
               </div>
             )}
           </section>
+          <Submenu />
 
           {/* Client Services Cards Section - Only show for clients */}
           {isClient && (
@@ -958,9 +1010,8 @@ class LandingPage extends Component {
                         index + 1
                       }`}
                     >
-                      <div className="landing-page-client-service-image">
-                        <img src={service.image} alt={service.title} />
-                        <div className="landing-page-client-service-overlay"></div>
+                      <div className="landing-page-service-icon-wrapper">
+                        {service.icon}
                       </div>
                       <div className="landing-page-client-service-content">
                         <h3>{service.title}</h3>
@@ -1286,7 +1337,25 @@ class LandingPage extends Component {
                         </div>
                         <div className="landing-page-contact-card-content-wrapper">
                           <h3>Email</h3>
-                          <p>voatnetwork@gmail.com</p>
+                          <a
+                            href="mailto:voatnetwork@gmail.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              color: "#5c4df4",
+                              textDecoration: "none",
+                              fontSize: "14px",
+                              fontWeight: 500,
+                              margin: "2px 0 0 0",
+                              letterSpacing: "0.01em",
+                              wordBreak: "break-word",
+                              textAlign: "left",
+                              lineHeight: 1.4,
+                              display: "block"
+                            }}
+                          >
+                            voatnetwork@gmail.com
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -1306,7 +1375,25 @@ class LandingPage extends Component {
                         </div>
                         <div className="landing-page-contact-card-content-wrapper">
                           <h3>Phone</h3>
-                          <p>+91 7799770919</p>
+                          <a
+                            href="tel:+917799770919"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              color: "#5c4df4",
+                              textDecoration: "none",
+                              fontSize: "14px",
+                              fontWeight: 500,
+                              margin: "2px 0 0 0",
+                              letterSpacing: "0.01em",
+                              wordBreak: "break-word",
+                              textAlign: "left",
+                              lineHeight: 1.4,
+                              display: "block"
+                            }}
+                          >
+                            +91 7799770919
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -1326,10 +1413,25 @@ class LandingPage extends Component {
                         </div>
                         <div className="landing-page-contact-card-content-wrapper">
                           <h3>Address</h3>
-                          <p>
-                            Vishakapatnam<br />
-                            Andhra Pradesh, 531019
-                          </p>
+                          <a
+                            href="https://maps.app.goo.gl/QeVzKgkZp5htyUUn7"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              color: "#5c4df4",
+                              textDecoration: "none",
+                              fontSize: "14px",
+                              fontWeight: 500,
+                              margin: "2px 0 0 0",
+                              letterSpacing: "0.01em",
+                              wordBreak: "break-word",
+                              textAlign: "left",
+                              lineHeight: 1.4,
+                              display: "block"
+                            }}
+                          >
+                            Vishakapatnam<br />Andhra Pradesh, 531019
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -1582,6 +1684,7 @@ class LandingPage extends Component {
           </section>
         </div>
         <Footer />
+        <FloatingRegisterButton />
       </>
     );
   }

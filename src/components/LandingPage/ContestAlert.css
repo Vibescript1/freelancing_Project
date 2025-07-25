@@ -1,0 +1,265 @@
+.contest-alert-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(44, 44, 84, 0.22);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s;
+  backdrop-filter: blur(8px);
+}
+
+.contest-alert-card {
+  position: relative;
+  background: rgba(255,255,255,0.38);
+  border-radius: 2.2rem;
+  box-shadow: 0 12px 48px 0 rgba(92,77,244,0.18), 0 2px 8px 0 rgba(0,0,0,0.08);
+  padding: 3.5rem 2.2rem 2.2rem 2.2rem; /* increased top padding for close button */
+  min-width: 340px;
+  max-width: 92vw;
+  text-align: center;
+  border: none;
+  overflow: hidden;
+  backdrop-filter: blur(18px) saturate(1.2);
+  animation: popIn 0.4s cubic-bezier(.68,-0.55,.27,1.55);
+}
+.contest-alert-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 2.2rem;
+  background: linear-gradient(120deg, #5c4df4, #7a70f9, #a18fff, #5c4df4 90%);
+  background-size: 200% 200%;
+  animation: gradientBorder 4s ease-in-out infinite;
+  opacity: 0.22;
+  pointer-events: none;
+}
+@keyframes gradientBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.contest-alert-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.contest-alert-title {
+  font-size: 2.3rem;
+  font-weight: 900;
+  color: #4b32c3;
+  /* Remove gradient for better contrast */
+  margin-bottom: 1.1rem;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.7rem;
+  width: 100%;
+  text-align: left;
+  margin-left: 0;
+}
+.contest-alert-title .emoji {
+  font-size: 2.1rem;
+  margin-right: 0.2rem;
+  filter: none;
+  line-height: 1;
+}
+
+.contest-alert-message {
+  font-size: 1.13rem;
+  color: #2d2363;
+  margin-bottom: 2.2rem;
+  font-weight: 600;
+  opacity: 1;
+  background: none;
+  border-radius: 0;
+  padding: 0.7rem 0.5rem 0.8rem 0.5rem;
+  box-shadow: none;
+  display: inline-block;
+  text-shadow: none;
+}
+
+.contest-alert-register {
+  display: block;
+  width: 100%;
+  background: linear-gradient(90deg, #7a70f9, #5c4df4 80%);
+  color: #fff;
+  border: none;
+  border-radius: 2.2rem;
+  padding: 1.18rem 0;
+  font-size: 1.22rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 6px 24px #7a70f9, 0 2px 8px rgba(0,0,0,0.10);
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+  margin-top: 0.7rem;
+  letter-spacing: 0.3px;
+  outline: none;
+  filter: none;
+}
+.contest-alert-register:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 36px #5c4df4, 0 2px 8px rgba(0,0,0,0.13);
+  background: linear-gradient(90deg, #5c4df4, #7a70f9 80%);
+  filter: brightness(1.07);
+}
+
+.contest-alert-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  left: auto;
+  transform: none;
+  background: #f1f5f9;
+  border: 1.5px solid #e0e7ef;
+  font-size: 1.8rem;
+  color: #5c4df4;
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0;
+  line-height: 1;
+  box-shadow: 0 2px 8px rgba(92,77,244,0.10);
+  margin-bottom: 0;
+}
+.contest-alert-close:hover {
+  color: #fff;
+  background: #5c4df4;
+  border-color: #5c4df4;
+}
+.contest-alert-close:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(112, 72, 255, 0.2);
+}
+
+/* Floating Register Now Button */
+.floating-register-container {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.floating-register-pop {
+  position: absolute;
+  bottom: 56px; /* slightly less so triangle overlaps button */
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  background: #2d2363;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  border-radius: 1.3rem;
+  padding: 0.4rem 1.1rem;
+  box-shadow: 0 2px 12px rgba(92,77,244,0.18);
+  white-space: nowrap;
+  max-width: 90vw;
+  text-align: center;
+  pointer-events: auto;
+  animation: popIn 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+  border: 1.5px solid #7a70f9;
+  overflow: visible;
+}
+.floating-register-pop::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -12px;
+  width: 22px;
+  height: 12px;
+  background: transparent;
+  pointer-events: none;
+  z-index: 2;
+  /* Triangle */
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-top: 12px solid #2d2363;
+  filter: drop-shadow(0 2px 4px rgba(92,77,244,0.10));
+}
+
+.floating-register-btn {
+  background: linear-gradient(90deg, #7a70f9, #5c4df4 80%);
+  color: #fff;
+  border: none;
+  border-radius: 1.6rem;
+  padding: 0.55rem 1.3rem;
+  font-size: 1rem;
+  font-weight: 800;
+  box-shadow: none;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+  outline: none;
+  filter: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.floating-register-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 32px #5c4df4, 0 2px 8px rgba(0,0,0,0.13);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 600px) {
+  .contest-alert-card {
+    padding: 1.1rem 0.5rem 1.2rem 0.5rem;
+    min-width: 0;
+    border-radius: 1.1rem;
+  }
+  .contest-alert-title {
+    font-size: 1.4rem;
+  }
+  .contest-alert-register {
+    font-size: 1.05rem;
+    padding: 0.8rem 0;
+  }
+  .contest-alert-close {
+    font-size: 1.3rem;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 28px;
+    height: 28px;
+  }
+  .floating-register-container {
+    right: 0.5rem;
+    bottom: 0.5rem;
+  }
+  .floating-register-pop {
+    font-size: 0.95rem;
+    padding: 0.35rem 0.7rem;
+    max-width: 98vw;
+  }
+  .floating-register-btn {
+    font-size: 0.95rem;
+    padding: 0.45rem 1rem;
+  }
+} 
