@@ -1,26 +1,22 @@
+/* ===== BASE STYLES STARTS HERE ===== */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
-
-/* Base Styles */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
 body {
   font-family: "Poppins", sans-serif;
   color: #333;
   line-height: 1.6;
   overflow-x: hidden;
 }
-
 .landing-page {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
 }
-
 .landing-page-container {
   max-width: 1280px;
   margin: 0 auto;
@@ -28,12 +24,9 @@ body {
   position: relative;
   z-index: 2;
 }
-
 .landing-page-section-header {
   text-align: center;
-  /* margin-bottom: 4rem; */
 }
-
 .landing-page-section-title {
   font-size: 2.8rem;
   font-weight: 700;
@@ -43,7 +36,6 @@ body {
   position: relative;
   font-family: "Montserrat", sans-serif;
 }
-
 .landing-page-section-title::after {
   content: "";
   position: absolute;
@@ -55,84 +47,15 @@ body {
   transform: translateX(-50%);
   border-radius: 2px;
 }
-
 .landing-page-text-gradient {
   background: linear-gradient(to right, #5c4df4, #7a70f9);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+/* ===== BASE STYLES ENDS HERE ===== */
 
-/* Button Styles */
-.landing-page-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 12px 28px;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.landing-page-button-icon {
-  width: 18px;
-  height: 18px;
-}
-
-.landing-page-button-primary {
-  background: linear-gradient(45deg, #5c4df4, #7a70f9);
-  color: white;
-  box-shadow: 0 10px 20px rgba(92, 77, 244, 0.2);
-  border: none;
-}
-
-.landing-page-button-primary:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 25px rgba(92, 77, 244, 0.3);
-}
-
-.landing-page-button-outline {
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(5px);
-}
-
-.landing-page-button-outline:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-5px);
-  border-color: white;
-}
-
-.landing-page-button-light {
-  background: white;
-  color: #5c4df4;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  border: none;
-}
-
-.landing-page-button-light:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
-}
-
-.landing-page-button-cta {
-  background: white;
-  color: #5c4df4;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  font-size: 1.1rem;
-  padding: 16px 32px;
-}
-
-.landing-page-button-cta:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
-}
-
+/* ===== HERO SECTION STARTS HERE ===== */
 .landing-page-hero {
   position: relative;
   width: 100%;
@@ -327,7 +250,7 @@ body {
   transform: scale(1.2);
 }
 
-/* Services Section */
+/* ===== SERVICES SECTION STARTS HERE ===== */
 .landing-page-services-section {
   padding: 50px 0px 10px 0px;
   background-color: #f8f9fa;
@@ -617,7 +540,7 @@ body {
   transform: translateX(6px);
 }
 
-/* Blog Section */
+/* ===== BLOG SECTION STARTS HERE ===== */
 .landing-page-blog-section {
   padding: 80px 0;
   background-color: #f8f9fa;
@@ -1008,7 +931,7 @@ body {
   color: #999;
 }
 
-/* Choose Us Section */
+/* ===== CHOOSE US SECTION STARTS HERE ===== */
 .landing-page-choose-us-section {
   padding: 50px 0;
   background-color: white;
@@ -1171,7 +1094,7 @@ body {
   line-height: 1.6;
 }
 
-/* New Vision Section - Modern 3D Card Design */
+/* ===== VISION SECTION STARTS HERE ===== */
 .landing-page-vision-section-new {
   padding: 50px 0;
   background: linear-gradient(135deg, #f9f9ff 0%, #f5f5ff 100%);
@@ -1435,152 +1358,7 @@ body {
   z-index: 1;
 }
 
-/* CTA Section */
-.landing-page-cta-section {
-  padding: 100px 0;
-  background: linear-gradient(135deg, #5c4df4, #7a70f9);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.landing-page-cta-section::before,
-.landing-page-cta-section::after {
-  content: "";
-  position: absolute;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-}
-
-.landing-page-cta-section::before {
-  width: 300px;
-  height: 300px;
-  top: -150px;
-  left: -150px;
-}
-
-.landing-page-cta-section::after {
-  width: 200px;
-  height: 200px;
-  bottom: -100px;
-  right: -100px;
-}
-
-.landing-page-cta-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  margin: 0 auto;
-  color: white;
-}
-
-.landing-page-cta-content h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-  font-family: "Montserrat", sans-serif;
-}
-
-.landing-page-cta-content p {
-  font-size: 1.2rem;
-  margin-bottom: 40px;
-  opacity: 0.9;
-}
-
-/* Animations */
-@keyframes wave-animation {
-  0% {
-    background-position: 0% 0%;
-  }
-  100% {
-    background-position: 100% 100%;
-  }
-}
-
-@keyframes float-orb {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(20px, 20px);
-  }
-}
-
-@keyframes shine {
-  0% {
-    left: -50%;
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    left: 150%;
-    opacity: 0;
-  }
-}
-
-@keyframes float-slow {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(30px, 30px);
-  }
-}
-
-@keyframes morph {
-  0% {
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-  }
-  25% {
-    border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%;
-  }
-  50% {
-    border-radius: 40% 60% 30% 70% / 50% 60% 70% 40%;
-  }
-  75% {
-    border-radius: 30% 60% 70% 40% / 50% 30% 60% 60%;
-  }
-  100% {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  }
-}
-
-@keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Contact Section*/
+/* ===== CONTACT SECTION STARTS HERE ===== */
 .landing-page-contact-section {
   padding: 120px 0;
   background-color: #f8f9fa;
@@ -2972,9 +2750,154 @@ body {
   }
 }
 
-/* Client Services Section */
+/* ===== CTA SECTION STARTS HERE ===== */
+.landing-page-cta-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #5c4df4, #7a70f9);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.landing-page-cta-section::before,
+.landing-page-cta-section::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.landing-page-cta-section::before {
+  width: 300px;
+  height: 300px;
+  top: -150px;
+  left: -150px;
+}
+
+.landing-page-cta-section::after {
+  width: 200px;
+  height: 200px;
+  bottom: -100px;
+  right: -100px;
+}
+
+.landing-page-cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  color: white;
+}
+
+.landing-page-cta-content h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.landing-page-cta-content p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+/* Animations */
+@keyframes wave-animation {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes float-orb {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(20px, 20px);
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -50%;
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    left: 150%;
+    opacity: 0;
+  }
+}
+
+@keyframes float-slow {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(30px, 30px);
+  }
+}
+
+@keyframes morph {
+  0% {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+  25% {
+    border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%;
+  }
+  50% {
+    border-radius: 40% 60% 30% 70% / 50% 60% 70% 40%;
+  }
+  75% {
+    border-radius: 30% 60% 70% 40% / 50% 30% 60% 60%;
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== CLIENT SERVICES SECTION STARTS HERE ===== */
 .landing-page-client-services-section {
-  padding: 80px 0;
+  padding: 40px 0px 10px 0px;
   background-color: #f8f9fa;
   position: relative;
   overflow: hidden;

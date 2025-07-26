@@ -1,3 +1,4 @@
+// ===== IMPORTS STARTS HERE =====
 import React, { Component } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import NavBar from "../Navbar";
@@ -38,7 +39,9 @@ import { FaWhatsapp, FaXTwitter } from "react-icons/fa6";
 import ContestAlert from "./ContestAlert";
 import { useEffect, useState } from "react";
 import Submenu from "./Submenu";
+// ===== IMPORTS ENDS HERE =====
 
+// ===== FLOATING REGISTER BUTTON COMPONENT STARTS HERE =====
 function FloatingRegisterButton() {
   const navigate = useNavigate();
   const [showPop, setShowPop] = useState(true);
@@ -76,9 +79,12 @@ function FloatingRegisterButton() {
     </div>
   );
 }
+// ===== FLOATING REGISTER BUTTON COMPONENT ENDS HERE =====
 
+// ===== LANDINGPAGE CLASS COMPONENT STARTS HERE =====
 class LandingPage extends Component {
   state = {
+    // ===== HERO SECTION STATE STARTS HERE =====
     currentSlide: 0,
     images: [
       "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080",
@@ -103,6 +109,7 @@ class LandingPage extends Component {
     ],
     currentFreelancerSlide: 0,
     currentClientSlide: 0,
+    // ===== HERO SECTION STATE ENDS HERE =====
     isLoggedIn: false,
     user: null,
     userRole: null,
@@ -112,7 +119,7 @@ class LandingPage extends Component {
     contactInView: false,
     clientCardsInView: false,
     blogInView: false,
-    // Blog expansion state
+    // ===== BLOG SECTION STATE STARTS HERE =====
     expandedBlogs: {},
     // Blog pagination state
     currentBlogPage: 1,
@@ -129,6 +136,7 @@ class LandingPage extends Component {
     // Timer for success message
     successTimer: null,
     showContestAlert: true,
+    // ===== BLOG SECTION STATE ENDS HERE =====
   };
 
   //scroll animations
@@ -673,6 +681,7 @@ class LandingPage extends Component {
       },
     ];
 
+    // ===== BLOG SECTION STARTS HERE =====
     const blogData = [
       {
         image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
@@ -729,6 +738,7 @@ class LandingPage extends Component {
         tags: ["Analytics", "Data", "Business", "Insights"],
       },
     ];
+    // ===== BLOG SECTION ENDS HERE =====
 
     const carouselServices = [
       {
@@ -830,6 +840,7 @@ class LandingPage extends Component {
           />
         )}
         <div className="landing-page">
+          {/* ===== Hero Section Starts Here ===== */}
           <section
             className={`landing-page-hero ${
               this.getUserType() === "client" ? "client-hero" : ""
@@ -983,9 +994,10 @@ class LandingPage extends Component {
               </div>
             )}
           </section>
+          {/* ===== Submenu Section ===== */}
           <Submenu />
 
-          {/* Client Services Cards Section - Only show for clients */}
+          {/* ===== Client Services Cards Section ===== */}
           {isClient && (
             <section
               className={`landing-page-client-services-section ${
@@ -1030,7 +1042,7 @@ class LandingPage extends Component {
             </section>
           )}
 
-          {/* Services Section - Only show for non-clients */}
+          {/* ===== Services Section ===== */}
           {!isClient && (
             <section
               className={`landing-page-services-section ${
@@ -1087,7 +1099,7 @@ class LandingPage extends Component {
             </section>
           )}
 
-          {/* Blog Section */}
+          {/* ===== Blog Section ===== */}
           <section
             className={`landing-page-blog-section ${
               this.state.blogInView ? "in-view" : ""
@@ -1196,7 +1208,7 @@ class LandingPage extends Component {
             </div>
           </section>
 
-          {/* Why Choose Us Section - Modernized */}
+          {/* ===== Why Choose Us Section ===== */}
           <section
             className={`landing-page-choose-us-section ${
               this.state.chooseUsInView ? "in-view" : ""
@@ -1252,7 +1264,7 @@ class LandingPage extends Component {
             <div className="landing-page-choose-us-shape"></div>
           </section>
 
-          {/* Vision Section*/}
+          {/* ===== Vision Section ===== */}
           <section
             className={`landing-page-vision-section-new ${
               this.state.visionInView ? "in-view" : ""
@@ -1305,7 +1317,7 @@ class LandingPage extends Component {
             </div>
           </section>
 
-          {/* Contact Us Section */}
+          {/* ===== Contact Us Section ===== */}
           <section
             className={`landing-page-contact-section ${
               this.state.contactInView ? "in-view" : ""
@@ -1664,7 +1676,7 @@ class LandingPage extends Component {
             </div>
           </section>
 
-          {/* Call to Action */}
+          {/* ===== Call to Action Section ===== */}
           <section className="landing-page-cta-section">
             <div className="landing-page-container">
               <div className="landing-page-cta-content">
@@ -1683,11 +1695,16 @@ class LandingPage extends Component {
             </div>
           </section>
         </div>
+        {/* ===== Footer Section ===== */}
         <Footer />
+        {/* ===== Floating Register Button Section ===== */}
         <FloatingRegisterButton />
       </>
     );
   }
 }
+// ===== LANDINGPAGE CLASS COMPONENT ENDS HERE =====
 
+// ===== EXPORT LANDINGPAGE STARTS HERE =====
 export default LandingPage;
+// ===== EXPORT LANDINGPAGE ENDS HERE =====
